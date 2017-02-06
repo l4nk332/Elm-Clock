@@ -1,62 +1,11 @@
 module Main exposing (main)
 
-import Html exposing (Html, program, text)
-
-
--- Model
-
-
-type alias Model =
-    { hours : Float
-    , minutes : Float
-    , seconds : Float
-    }
-
-
-model : Model
-model =
-    { hours = 10
-    , minutes = 6
-    , seconds = 55
-    }
-
-
-initialModel : ( Model, Cmd Msg )
-initialModel =
-    ( model, Cmd.none )
-
-
-
--- Update
-
-
-type Msg
-    = NoOp
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        NoOp ->
-            ( model, Cmd.none )
-
-
-
--- View
-
-
-view : Model -> Html Msg
-view model =
-    text (toString (model.hours) ++ ":" ++ toString (model.minutes) ++ ":" ++ toString (model.seconds))
-
-
-
--- Subscriptions
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none
+import Model exposing (Model, initialModel)
+import View exposing (view)
+import Update exposing (update)
+import Subscriptions exposing (subscriptions)
+import Messages exposing (Msg(..))
+import Html exposing (program)
 
 
 main : Program Never Model Msg
