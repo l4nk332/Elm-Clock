@@ -3,12 +3,14 @@ module Clock.Model exposing (Clock, initialClock)
 type alias Clock = {
     hours: String,
     minutes: String,
-    seconds: String
+    seconds: String,
+    meridiem: String
 }
 
 initialClock : Clock
-initialClock clock =
-    { hours = "0"
-    , minutes = "0"
-    , seconds = "0"
+initialClock =
+    { hours = ""
+    , minutes = ""
+    , seconds = ""
+    , meridiem = ""
     }

@@ -1,6 +1,6 @@
 module Messages exposing (Msg(..))
 
-import Clock.Messages
+import Clock.Messages exposing (ClockMsg(..))
 
 type Msg
-    = RouteClock Clock.Messages.Msg
+    = RouteClock ClockMsg

@@ -1,7 +1,7 @@
 module Model exposing (..)
 
 import Messages exposing (Msg(..))
-import Clock.Model exposing (Clock, intialClock)
+import Clock.Model exposing (Clock, initialClock)
 
 type alias Model =
     { clockWidget : Clock }

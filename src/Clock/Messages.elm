@@ -1,4 +1,6 @@
-module Clock.Messages exposing (Msg(..))
+module Clock.Messages exposing (ClockMsg(..))
 
-type Msg
-    = Tick
+import Time exposing (Time)
+
+type ClockMsg
+    = Tick Time

@@ -2,24 +2,33 @@ module Clock.Update exposing (update)
 
 import Date
 import Clock.Model exposing (Clock)
-import Clock.Messages exposing (Msg(..))
+import Clock.Messages exposing (ClockMsg(..))
+import Clock.Utils exposing (..)
 
 
-update : Clock -> Msg -> Clock Msg
-update clock msg =
+update : ClockMsg -> Clock -> Clock
+update msg clock =
     case msg of
         Tick timeInSeconds ->
             let
                 date =
                     Date.fromTime timeInSeconds
 
+                meridiem =
+                    determineMeridiem (Date.hour date)
+
                 hours =
-                    toString(Date.hour date)
+                    padWithZero (toString (convertTo12HourTime (Date.hour date)))
 
                 minutes =
-                    toString(Date.minute date)
+                    padWithZero (toString (Date.minute date))
 
                 seconds =
-                    toString(Date.second date)
+                    padWithZero (toString (Date.second date))
             in
-                { clock | hours = hours, minutes = minutes, seconds = seconds }
+                { clock
+                    | hours = hours
+                    , minutes = minutes
+                    , seconds = seconds
+                    , meridiem = meridiem
+                }
