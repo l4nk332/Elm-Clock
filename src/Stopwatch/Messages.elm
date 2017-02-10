@@ -6,4 +6,6 @@ import Time exposing (Time)
 type StopwatchMsg
     = Tick Time
     | ToggleIsRunning
+    | Lap
     | AddLap Time
+    | Reset
