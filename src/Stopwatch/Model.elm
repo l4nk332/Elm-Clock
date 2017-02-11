@@ -1,17 +1,15 @@
 module Stopwatch.Model exposing (..)
 
-import Time exposing (Time)
-
 
 type alias Stopwatch =
     { isRunning : Bool
-    , time : Maybe Time
-    , laps : List Time
+    , timeElapsed : Float
+    , laps : List Float
     }
 
 initialStopwatch : Stopwatch
 initialStopwatch =
     { isRunning = False
-    , time = Nothing
+    , timeElapsed = 0
     , laps = []
     }
