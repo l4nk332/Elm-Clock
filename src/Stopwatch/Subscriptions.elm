@@ -8,3 +8,5 @@ subscriptions : Stopwatch -> Sub StopwatchMsg
 subscriptions stopwatch =
     if stopwatch.isRunning then
         Time.every Time.millisecond Tick
+    else
+        Sub.none

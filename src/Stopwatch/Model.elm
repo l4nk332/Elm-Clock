@@ -12,6 +12,6 @@ type alias Stopwatch =
 initialStopwatch : Stopwatch
 initialStopwatch =
     { isRunning = False
-    , time : Nothing
-    , laps : []
+    , time = Nothing
+    , laps = []
     }
