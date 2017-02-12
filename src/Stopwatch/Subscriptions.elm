@@ -7,6 +7,6 @@ import Stopwatch.Messages exposing (StopwatchMsg(..))
 subscriptions : Stopwatch -> Sub StopwatchMsg
 subscriptions stopwatch =
     if stopwatch.isRunning then
-        Time.every Time.millisecond Tick
+        Time.every Time.second Tick
     else
         Sub.none
