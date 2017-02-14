@@ -4,6 +4,7 @@ import Time
 import Stopwatch.Model exposing (Stopwatch)
 import Stopwatch.Messages exposing (StopwatchMsg(..))
 
+
 subscriptions : Stopwatch -> Sub StopwatchMsg
 subscriptions stopwatch =
     if stopwatch.isRunning then

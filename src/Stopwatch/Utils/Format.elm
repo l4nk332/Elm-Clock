@@ -1,16 +1,12 @@
 module Stopwatch.Utils.Format exposing (..)
 
-import Time
+import Stopwatch.Model exposing (TrackTime)
 
-formatHMS : Float -> String
-formatHMS elapsedInMs =
+formatHMS : TrackTime -> String
+formatHMS timeElapsed =
     let
-        hour = floor (Time.inHours elapsedInMs)
-        timeRemainingA = elapsedInMs - (toFloat (hour * 3600000))
-        minute = floor (Time.inMinutes timeRemainingA)
-        timeRemainingB = timeRemainingA - (toFloat (minute * 60000))
-        second = floor (Time.inSeconds timeRemainingB)
-        timeRemainingC = timeRemainingB - (toFloat (second * 1000))
-        millisecond = Time.inMilliseconds timeRemainingC
+        hour = timeElapsed.hour
+        minute = timeElapsed.minute
+        second = timeElapsed.second
     in
-        (toString hour) ++ ":" ++ (toString minute) ++ ":" ++ (toString second) ++ ":" ++ (toString millisecond)
+        (toString hour) ++ ":" ++ (toString minute) ++ ":" ++ (toString second)

@@ -2,7 +2,7 @@ module Stopwatch.View exposing (..)
 
 import Html exposing (Html, h1, div, ul, li, button, text)
 import Html.Events exposing (onClick)
-import Stopwatch.Model exposing (Stopwatch)
+import Stopwatch.Model exposing (Stopwatch, TrackTime)
 import Stopwatch.Messages exposing (StopwatchMsg(..))
 import Stopwatch.Utils.Format exposing (..)
 
@@ -14,11 +14,11 @@ showStartStop stopwatch =
     else
         "Start"
 
-showLap : Float -> Html StopwatchMsg
+showLap : TrackTime -> Html StopwatchMsg
 showLap lap =
     li [] [ text (formatHMS lap) ]
 
-showLaps : List Float -> Html StopwatchMsg
+showLaps : List TrackTime -> Html StopwatchMsg
 showLaps laps =
     ul [] (List.map showLap laps)
 
