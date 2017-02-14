@@ -31,5 +31,4 @@ view stopwatch =
         , button [ onClick Reset ] [ text "Reset" ]
         , button [ onClick Lap ] [ text "Lap" ]
         , showLaps stopwatch.laps
-        , h1 [] [ text (toString stopwatch.timeElapsed) ]
         ]

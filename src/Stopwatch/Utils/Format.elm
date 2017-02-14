@@ -2,6 +2,14 @@ module Stopwatch.Utils.Format exposing (..)
 
 import Stopwatch.Model exposing (TrackTime)
 
+
+leftPadWithZero : Int -> String
+leftPadWithZero n =
+    if n < 10 then
+        String.padLeft 2 '0' (toString n)
+    else
+        toString n
+
 formatHMS : TrackTime -> String
 formatHMS timeElapsed =
     let
@@ -9,4 +17,4 @@ formatHMS timeElapsed =
         minute = timeElapsed.minute
         second = timeElapsed.second
     in
-        (toString hour) ++ ":" ++ (toString minute) ++ ":" ++ (toString second)
+        (leftPadWithZero hour) ++ ":" ++ (leftPadWithZero minute) ++ ":" ++ (leftPadWithZero second)
