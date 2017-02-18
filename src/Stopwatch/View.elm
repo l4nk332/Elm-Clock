@@ -30,5 +30,5 @@ view stopwatch =
         , button [ onClick ToggleIsRunning ] [ text (showStartStop stopwatch) ]
         , button [ onClick Reset ] [ text "Reset" ]
         , button [ onClick Lap ] [ text "Lap" ]
-        , showLaps stopwatch.laps
+        , showLaps (stopwatch.currentLap :: stopwatch.laps)
         ]

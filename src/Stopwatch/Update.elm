@@ -5,23 +5,30 @@ import Stopwatch.Model exposing (Stopwatch, TrackTime)
 import Stopwatch.Messages exposing (StopwatchMsg(..))
 
 
-
 calculateOverflow : Int -> Int -> ( Int, Int )
 calculateOverflow count limit =
     if count == limit then
-        (0, 1)
+        ( 0, 1 )
     else
-        (count, 0)
+        ( count, 0 )
 
 
-updateTrackTime : TrackTime -> ( Int, Int, Int )
+updateTrackTime : TrackTime -> TrackTime
 updateTrackTime trackTime =
     let
-        (s, sOverflow) = calculateOverflow (trackTime.second + 1) 60
-        (m, mOverflow) = calculateOverflow (trackTime.minute + sOverflow) 60
-        hr = trackTime.hour + mOverflow
+        ( s, sOverflow ) =
+            calculateOverflow (trackTime.second + 1) 60
+
+        ( m, mOverflow ) =
+            calculateOverflow (trackTime.minute + sOverflow) 60
+
+        hr =
+            trackTime.hour + mOverflow
     in
-        ( hr, m, s )
+        { hour = hr
+        , minute = m
+        , second = s
+        }
 
 
 update : StopwatchMsg -> Stopwatch -> ( Stopwatch, Cmd StopwatchMsg )
@@ -29,32 +36,46 @@ update stopwatchMsg stopwatch =
     case stopwatchMsg of
         Tick _ ->
             let
-                ( hour
-                , minute
-                , second) = updateTrackTime stopwatch.timeElapsed
-                timeElapsed = stopwatch.timeElapsed
-                updatedTime =
-                    { timeElapsed
-                    | hour = hour
-                    , minute = minute
-                    , second = second
-                    }
+                timeElapsed =
+                    stopwatch.timeElapsed
+
+                updatedTimeElapsed =
+                    updateTrackTime timeElapsed
+
+                currentLap =
+                    stopwatch.currentLap
+
+                updatedLapTime=
+                    updateTrackTime currentLap
+
             in
-                ( { stopwatch | timeElapsed = updatedTime }, Cmd.none )
+                ( { stopwatch
+                    | timeElapsed = updatedTimeElapsed
+                    , currentLap = updatedLapTime
+                  }
+                , Cmd.none
+                )
 
         ToggleIsRunning ->
             ( { stopwatch | isRunning = not stopwatch.isRunning }, Cmd.none )
 
         Lap ->
-            let
-                lap = stopwatch.timeElapsed
-            in
-                ( { stopwatch | laps = lap :: stopwatch.laps }, Cmd.none )
+            ( { stopwatch
+                | laps = stopwatch.currentLap :: stopwatch.laps
+                , currentLap = { hour = 0, minute = 0, second = 0 }
+              }
+            , Cmd.none
+            )
 
         Reset ->
             ( { stopwatch
                 | isRunning = False
                 , timeElapsed =
+                    { hour = 0
+                    , minute = 0
+                    , second = 0
+                    }
+                , currentLap =
                     { hour = 0
                     , minute = 0
                     , second = 0
