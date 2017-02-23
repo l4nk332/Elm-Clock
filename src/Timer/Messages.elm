@@ -6,3 +6,4 @@ type TimerMsg
     = Tick Time
     | ToggleIsRunning
     | Reset
+    | TimeUp

@@ -1,14 +1,15 @@
 module Timer.Update exposing (..)
 
 import Task
+import Time
 import Timer.Model exposing (Timer, TrackTime)
 import Timer.Messages exposing (TimerMsg(..))
 
 
-calculateOverflow : Int -> Int -> ( Int, Int )
-calculateOverflow count limit =
-    if count == limit then
-        ( 0, 1 )
+calculateUnderflow : Int -> Int -> ( Int, Int )
+calculateUnderflow count floor =
+    if count < floor then
+        ( 59, 1 )
     else
         ( count, 0 )
 
@@ -16,14 +17,14 @@ calculateOverflow count limit =
 updateTrackTime : TrackTime -> TrackTime
 updateTrackTime trackTime =
     let
-        ( s, sOverflow ) =
-            calculateOverflow (trackTime.second + 1) 60
+        ( s, sUnderflow ) =
+            calculateUnderflow (trackTime.second - 1) 0
 
-        ( m, mOverflow ) =
-            calculateOverflow (trackTime.minute + sOverflow) 60
+        ( m, mUnderflow ) =
+            calculateUnderflow (trackTime.minute - sUnderflow) 0
 
         hr =
-            trackTime.hour + mOverflow
+            trackTime.hour - mUnderflow
     in
         { hour = hr
         , minute = m
@@ -39,31 +40,30 @@ update timerMsg timer =
                 timeRemaining =
                     timer.timeRemaining
 
-                updatedTimeElapsed =
+                updatedTimeRemaining =
                     updateTrackTime timeRemaining
             in
                 ( { timer
-                    | timeRemaining = updatedTimeElapsed
+                    | timeRemaining = updatedTimeRemaining
                   }
                 , Cmd.none
                 )
 
         ToggleIsRunning ->
-            ( { timer | isRunning = not timer.isRunning }, Cmd.none )
+            ( { timer | isRunning = not timer.isRunning, alarm = False }, Cmd.none )
 
         Reset ->
             ( { timer
                 | isRunning = False
-                , timeSet =
-                    { hour = 0
-                    , minute = 0
-                    , second = 0
-                    }
+                , alarm = False
                 , timeRemaining =
-                    { hour = 0
-                    , minute = 0
-                    , second = 0
+                    { hour = timer.timeSet.hour
+                    , minute = timer.timeSet.minute
+                    , second = timer.timeSet.second
                     }
               }
             , Cmd.none
             )
+
+        TimeUp ->
+            ( { timer | isRunning = False, alarm = True }, Cmd.none )

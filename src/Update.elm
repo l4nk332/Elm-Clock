@@ -3,9 +3,8 @@ module Update exposing (update)
 import Messages exposing (Msg(..))
 import Model exposing (Model)
 import Clock.Update
-import Clock.Messages
 import Stopwatch.Update
-import Stopwatch.Messages
+import Timer.Update
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -21,3 +20,9 @@ update msg model =
                 (stopwatchModel, childMsg) = Stopwatch.Update.update stopwatchMsg model.stopwatchWidget
             in
                 ( { model | stopwatchWidget = stopwatchModel }, Cmd.map RouteStopwatch childMsg )
+
+        RouteTimer timerMsg ->
+            let
+                (timerModel, childMsg) = Timer.Update.update timerMsg model.timerWidget
+            in
+                ( { model | timerWidget = timerModel }, Cmd.map RouteTimer childMsg )
