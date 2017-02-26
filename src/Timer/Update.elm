@@ -31,6 +31,10 @@ updateTrackTime trackTime =
         , second = s
         }
 
+timerReachedZero : TrackTime -> Bool
+timerReachedZero timer =
+    (timer.hour == 0) && (timer.minute == 0) && (timer.second == 0)
+
 
 update : TimerMsg -> Timer -> ( Timer, Cmd TimerMsg )
 update timerMsg timer =
@@ -42,12 +46,14 @@ update timerMsg timer =
 
                 updatedTimeRemaining =
                     updateTrackTime timeRemaining
+
+                updatedTimer =
+                    { timer | timeRemaining = updatedTimeRemaining }
             in
-                ( { timer
-                    | timeRemaining = updatedTimeRemaining
-                  }
-                , Cmd.none
-                )
+                if timerReachedZero updatedTimeRemaining then
+                    update TimeUp updatedTimer
+                else
+                    (updatedTimer, Cmd.none)
 
         ToggleIsRunning ->
             ( { timer | isRunning = not timer.isRunning, alarm = False }, Cmd.none )
