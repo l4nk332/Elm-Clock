@@ -1,6 +1,6 @@
 module Update exposing (update)
 
-import Messages exposing (Msg(..))
+import Messages exposing (Msg(..), Widget(..))
 import Model exposing (Model)
 import Clock.Update
 import Stopwatch.Update
@@ -26,3 +26,6 @@ update msg model =
                 (timerModel, childMsg) = Timer.Update.update timerMsg model.timerWidget
             in
                 ( { model | timerWidget = timerModel }, Cmd.map RouteTimer childMsg )
+
+        Activate widget ->
+            ( { model | activeWidget = widget }, Cmd.none )

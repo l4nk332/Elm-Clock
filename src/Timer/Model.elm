@@ -2,9 +2,9 @@ module Timer.Model exposing (..)
 
 
 type alias TrackTime =
-    { hour: Int
-    , minute: Int
-    , second: Int
+    { hour : Int
+    , minute : Int
+    , second : Int
     }
 
 type alias Timer =
