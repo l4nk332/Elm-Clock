@@ -1,8 +1,9 @@
 module View exposing (view)
 
 import Model exposing (Model)
-import Html exposing (Html, div, button, text)
+import Html exposing (Html, div, button, span, i, text)
 import Html.Events exposing (onClick)
+import Html.Attributes exposing (class)
 import Messages exposing (Msg(..), Widget(..))
 import Clock.View
 import Stopwatch.View
@@ -20,15 +21,57 @@ displayActiveWidget model =
         TimerWidget ->
             Html.map RouteTimer (Timer.View.view model.timerWidget)
 
+generateWidgetSwitches : Model -> List (Html Msg)
+generateWidgetSwitches model =
+    case model.activeWidget of
+        ClockWidget ->
+            [ div [ onClick (Activate ClockWidget), class "widget-switch" ]
+                [ i [ class "material-icons widget-switch-icon access_time" ] []
+                , span [ class "widget-switch-text" ] [ text "Clock" ]
+                ]
+            , div [ onClick (Activate TimerWidget), class "widget-switch inactive" ]
+                [ i [ class "material-icons widget-switch-icon av_timer" ] []
+                , span [ class "widget-switch-text" ] [ text "Timer" ]
+                ]
+            , div [ onClick (Activate StopwatchWidget), class "widget-switch inactive" ]
+                [ i [ class "material-icons widget-switch-icon timer" ] []
+                , span [ class "widget-switch-text" ] [ text "Stopwatch" ]
+                ]
+            ]
+
+        StopwatchWidget ->
+            [ div [ onClick (Activate ClockWidget), class "widget-switch inactive" ]
+                [ i [ class "material-icons widget-switch-icon access_time" ] []
+                , span [ class "widget-switch-text" ] [ text "Clock" ]
+                ]
+            , div [ onClick (Activate TimerWidget), class "widget-switch inactive" ]
+                [ i [ class "material-icons widget-switch-icon av_timer" ] []
+                , span [ class "widget-switch-text" ] [ text "Timer" ]
+                ]
+            , div [ onClick (Activate StopwatchWidget), class "widget-switch" ]
+                [ i [ class "material-icons widget-switch-icon timer" ] []
+                , span [ class "widget-switch-text" ] [ text "Stopwatch" ]
+                ]
+            ]
+
+        TimerWidget ->
+            [ div [ onClick (Activate ClockWidget), class "widget-switch inactive" ]
+                [ i [ class "material-icons widget-switch-icon access_time" ] []
+                , span [ class "widget-switch-text" ] [ text "Clock" ]
+                ]
+            , div [ onClick (Activate TimerWidget), class "widget-switch" ]
+                [ i [ class "material-icons widget-switch-icon av_timer" ] []
+                , span [ class "widget-switch-text" ] [ text "Timer" ]
+                ]
+            , div [ onClick (Activate StopwatchWidget), class "widget-switch inactive" ]
+                [ i [ class "material-icons widget-switch-icon timer" ] []
+                , span [ class "widget-switch-text" ] [ text "Stopwatch" ]
+                ]
+            ]
+
 view : Model -> Html Msg
 view model =
-    div [] [
-        div [] [
-            displayActiveWidget model
-        ]
-        , div [] [
-            button [ onClick (Activate ClockWidget) ] [ text "Clock" ]
-            , button [ onClick (Activate StopwatchWidget) ] [ text "Stopwatch" ]
-            , button [ onClick (Activate TimerWidget) ] [ text "Timer" ]
-        ]
+    div [ class "widget-container" ] [
+        div [] [ displayActiveWidget model ]
+        , div [ class "widget-switch-group" ] (generateWidgetSwitches model)
     ]

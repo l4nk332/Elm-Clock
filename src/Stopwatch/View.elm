@@ -1,34 +1,40 @@
 module Stopwatch.View exposing (..)
 
-import Html exposing (Html, h1, div, ul, li, button, text)
+import Html exposing (Html, h3, div, ul, li, span, button, text)
 import Html.Events exposing (onClick)
+import Html.Attributes exposing (class)
 import Stopwatch.Model exposing (Stopwatch, TrackTime)
 import Stopwatch.Messages exposing (StopwatchMsg(..))
 import Stopwatch.Utils.Format exposing (..)
 
 
-showStartStop : Stopwatch -> String
-showStartStop stopwatch =
+generateStopwatchButtons : Stopwatch -> List (Html StopwatchMsg)
+generateStopwatchButtons stopwatch =
     if stopwatch.isRunning then
-        "Stop"
+        [ button [ onClick Reset ] [ text "Reset" ]
+        , button [ onClick ToggleIsRunning ] [ text "Stop" ]
+        ]
     else
-        "Start"
+        [ button [ onClick Lap ] [ text "Lap" ]
+        , button [ onClick ToggleIsRunning ] [ text "Start" ]
+        ]
 
-showLap : TrackTime -> Html StopwatchMsg
-showLap lap =
-    li [] [ text (formatHMS lap) ]
+generateLapListItem : Int -> TrackTime -> Html StopwatchMsg
+generateLapListItem index lap =
+    li []
+       [ span [] [ text ("Lap " ++ toString(index + 1)) ]
+       , span [] [ text (formatHMS lap) ]
+       ]
 
-showLaps : List TrackTime -> Html StopwatchMsg
-showLaps laps =
-    ul [] (List.map showLap laps)
+generateLapsList : List TrackTime -> Html StopwatchMsg
+generateLapsList laps =
+    ul [ class "lap-list" ] (List.reverse (List.indexedMap generateLapListItem (List.reverse(laps))))
 
 
 view : Stopwatch -> Html StopwatchMsg
 view stopwatch =
-    div []
-        [ h1 [] [ text (formatHMS stopwatch.timeElapsed) ]
-        , button [ onClick ToggleIsRunning ] [ text (showStartStop stopwatch) ]
-        , button [ onClick Reset ] [ text "Reset" ]
-        , button [ onClick Lap ] [ text "Lap" ]
-        , showLaps (stopwatch.currentLap :: stopwatch.laps)
+    div [ class "widget stopwatch-widget" ]
+        [ h3 [ class "timestamp" ] [ text (formatHMS stopwatch.timeElapsed) ]
+        , div [ class "flex-button-group" ] (generateStopwatchButtons stopwatch)
+        , generateLapsList (stopwatch.currentLap :: stopwatch.laps)
         ]

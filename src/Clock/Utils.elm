@@ -19,8 +19,8 @@ padWithZero string =
         string
 
 
-determineMeridiem : Int -> String
-determineMeridiem hour =
+determineMeridien : Int -> String
+determineMeridien hour =
     if hour > 11 && hour < 24 then
         "PM"
     else

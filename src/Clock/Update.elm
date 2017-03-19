@@ -14,8 +14,8 @@ update msg clock =
                 date =
                     Date.fromTime timeInSeconds
 
-                meridiem =
-                    determineMeridiem (Date.hour date)
+                meridien =
+                    determineMeridien (Date.hour date)
 
                 hours =
                     padWithZero (toString (convertTo12HourTime (Date.hour date)))
@@ -30,5 +30,5 @@ update msg clock =
                     | hours = hours
                     , minutes = minutes
                     , seconds = seconds
-                    , meridiem = meridiem
+                    , meridien = meridien
                 }

@@ -4,7 +4,7 @@ type alias Clock = {
     hours : String,
     minutes : String,
     seconds : String,
-    meridiem : String
+    meridien : String
 }
 
 initialClock : Clock
@@ -12,5 +12,5 @@ initialClock =
     { hours = ""
     , minutes = ""
     , seconds = ""
-    , meridiem = ""
+    , meridien = ""
     }
