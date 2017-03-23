@@ -36,7 +36,7 @@ body
 	width: 300px
 	height: auto
 	user-select: none
-	
+
 .widget
 	width: 100%
 	background-color: $black-chalk
@@ -47,7 +47,7 @@ body
 
 .widget-switch-group
 	@include flex(row, nowrap, center, center)
-	
+
 .widget-switch
 	font-family: $didact
 	background-color: $black-chalk
@@ -67,6 +67,15 @@ body
 	color: $white
 	margin: 0 auto
 	padding: 5px 0 10px 0
+
+.clock-widget .timestamp
+    @include flex(row, nowrap, space-between, center)
+    padding-right: 0.8em
+    padding-left: 0.8em
+    box-sizing: border-box
+
+.clock-time
+    display: inline-block
 
 .meridien
 	margin-left: 15px
@@ -89,7 +98,7 @@ body
 		color: inherit
 	.widget-switch-text
 		color: inherit
-	
+
 .stopwatch-widget .timestamp, .timer-widget .timestamp
 	border-bottom: 1px solid transparentize($off-white, 0.8)
 
@@ -98,7 +107,7 @@ body
 	width: 80%
 	padding: 10px 0
 
-	
+
 .default-button
 	@extend %round-button
 	color: $white
@@ -109,7 +118,7 @@ body
 	&:active
 		color: $black-chalk
 		background-color: darken($white, 10%)
-	
+
 .green-button
 	@extend %round-button
 	color: $green-tea
@@ -144,6 +153,6 @@ body
 		color: $green-tea
 	.slowest-lap
 		color: $flat-red
-	
+
 .hidden
 	display: none
