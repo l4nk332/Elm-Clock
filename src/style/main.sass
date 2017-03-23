@@ -26,7 +26,6 @@ $didact: 'Didact Gothic', sans-serif
 	background: none
 	transition: background-color 150ms ease-in-out, color 150ms ease-in-out
 
-
 body
 	min-height: 100vh
 	@include flex(column, nowrap, center, center)
@@ -41,9 +40,6 @@ body
 	width: 100%
 	background-color: $black-chalk
 	@include flex(column, nowrap, flex-start, center)
-
-.widget.inactive
-	display: none
 
 .widget-switch-group
 	@include flex(row, nowrap, center, center)
@@ -88,9 +84,6 @@ body
 
 .widget-switch-text
 	padding-bottom: 4px
-
-.widget-switch.inactive
-	background-color: lighten($black-chalk, 10%)
 
 .widget-switch.inactive
 	color: transparentize($white, 0.3)
@@ -153,6 +146,23 @@ body
 		color: $green-tea
 	.slowest-lap
 		color: $flat-red
+
+// States
+
+.inactive
+	background-color: lighten($black-chalk, 10%)
+
+.disabled
+    opacity: 0.5
+    background-color: transparent
+    color: $white
+    cursor: default
+    &:hover
+        background-color: transparent
+        color: $white
+    &:active
+        background-color: transparent
+        color: $white
 
 .hidden
 	display: none

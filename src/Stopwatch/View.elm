@@ -6,6 +6,7 @@ import Html.Attributes exposing (class)
 import Stopwatch.Model exposing (Stopwatch, TrackTime)
 import Stopwatch.Messages exposing (StopwatchMsg(..))
 import Stopwatch.Utils.Format exposing (..)
+import Stopwatch.Utils.Validation exposing (..)
 
 
 generateStopwatchButtons : Stopwatch -> List (Html StopwatchMsg)
@@ -13,6 +14,10 @@ generateStopwatchButtons stopwatch =
     if stopwatch.isRunning then
         [ button [ class "default-button", onClick Lap ] [ text "Lap" ]
         , button [ class "red-button", onClick ToggleIsRunning ] [ text "Stop" ]
+        ]
+    else if stopwatchHasNotStarted(stopwatch) then
+        [ button [ class "default-button disabled" ] [ text "Reset" ]
+        , button [ class "green-button", onClick ToggleIsRunning ] [ text "Start" ]
         ]
     else
         [ button [ class "default-button", onClick Reset ] [ text "Reset" ]
