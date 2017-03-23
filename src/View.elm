@@ -72,6 +72,6 @@ generateWidgetSwitches model =
 view : Model -> Html Msg
 view model =
     div [ class "widget-container" ] [
-        div [] [ displayActiveWidget model ]
+        (displayActiveWidget model)
         , div [ class "widget-switch-group" ] (generateWidgetSwitches model)
     ]

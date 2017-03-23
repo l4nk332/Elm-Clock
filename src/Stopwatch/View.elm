@@ -11,12 +11,12 @@ import Stopwatch.Utils.Format exposing (..)
 generateStopwatchButtons : Stopwatch -> List (Html StopwatchMsg)
 generateStopwatchButtons stopwatch =
     if stopwatch.isRunning then
-        [ button [ onClick Reset ] [ text "Reset" ]
-        , button [ onClick ToggleIsRunning ] [ text "Stop" ]
+        [ button [ class "default-button", onClick Lap ] [ text "Lap" ]
+        , button [ class "red-button", onClick ToggleIsRunning ] [ text "Stop" ]
         ]
     else
-        [ button [ onClick Lap ] [ text "Lap" ]
-        , button [ onClick ToggleIsRunning ] [ text "Start" ]
+        [ button [ class "default-button", onClick Reset ] [ text "Reset" ]
+        , button [ class "green-button", onClick ToggleIsRunning ] [ text "Start" ]
         ]
 
 generateLapListItem : Int -> TrackTime -> Html StopwatchMsg
