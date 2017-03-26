@@ -64,6 +64,21 @@ body
 	margin: 0 auto
 	padding: 5px 0 10px 0
 
+.digit-box
+  color: $white
+  display: inline
+  outline: none
+  font-size: 40px
+  width: 50px
+  background: transparent
+  border: none
+  border-bottom: 0.03em solid transparentize($white, 0.5)
+  text-align: center
+  &:focus
+    border-bottom: 0.03em solid $white
+  &::selection
+    background: lighten($black-chalk, 20%)
+
 .clock-widget .timestamp
     @include flex(row, nowrap, space-between, center)
     padding-right: 0.8em

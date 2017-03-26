@@ -7,3 +7,6 @@ type TimerMsg
     | ToggleIsRunning
     | Reset
     | TimeUp
+    | SetHour String
+    | SetMinute String
+    | SetSecond String

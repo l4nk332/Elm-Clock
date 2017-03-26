@@ -10,6 +10,7 @@ type alias TrackTime =
 type alias Timer =
     { isRunning : Bool
     , alarm : Bool
+    , isSet : Bool
     , timeSet : TrackTime
     , timeRemaining : TrackTime
     }
@@ -18,6 +19,7 @@ initialTimer : Timer
 initialTimer =
     { isRunning = False
     , alarm = False
+    , isSet = False
     , timeSet =
         { hour = 0
         , minute = 1
@@ -25,7 +27,7 @@ initialTimer =
         }
     , timeRemaining =
         { hour = 0
-        , minute = 1
+        , minute = 0
         , second = 0
         }
     }
