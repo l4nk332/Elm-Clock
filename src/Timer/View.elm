@@ -31,6 +31,8 @@ generateStartStopButton timer =
             button [ onClick ToggleIsRunning, class "red-button" ] [ text "Stop" ]
         else
             button [ onClick ToggleIsRunning, class "green-button" ] [ text "Start" ]
+    else if trackTimeIsValid timer.timeSet then
+        button [ class "green-button" ] [ text "Start" ]
     else
         button [ class "green-button inactive" ] [ text "Start" ]
 

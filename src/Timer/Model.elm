@@ -22,7 +22,7 @@ initialTimer =
     , isSet = False
     , timeSet =
         { hour = 0
-        , minute = 1
+        , minute = 0
         , second = 0
         }
     , timeRemaining =
