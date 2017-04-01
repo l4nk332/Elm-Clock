@@ -51,5 +51,4 @@ view timer =
               [ button [ onClick Reset, class "default-button" ] [ text "Reset" ]
               , generateStartStopButton timer
               ]
-        , text (toString timer)
         ]
