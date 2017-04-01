@@ -10,11 +10,11 @@ import Timer.Utils.Format exposing (..)
 generateDigitInputBoxes : Timer -> Html TimerMsg
 generateDigitInputBoxes timer =
     h3 [ class "timestamp" ] [
-        input [ (onInput SetHour), class "digit-box", type_ "text", placeholder "00", maxlength 2 ] []
+        input [ (onInput SetHour), class "digit-box", type_ "text", maxlength 2 ] []
         , text ":"
-        , input [ (onInput SetMinute), class "digit-box", type_ "text", placeholder "00", maxlength 2 ] []
+        , input [ (onInput SetMinute), class "digit-box", type_ "text", maxlength 2 ] []
         , text ":"
-        , input [ (onInput SetSecond), class "digit-box", type_ "text", placeholder "00", maxlength 2 ] []
+        , input [ (onInput SetSecond), class "digit-box", type_ "text", maxlength 2 ] []
     ]
 
 generateTimestamp : Timer -> Html TimerMsg
@@ -32,7 +32,7 @@ generateStartStopButton timer =
         else
             button [ onClick ToggleIsRunning, class "green-button" ] [ text "Start" ]
     else if trackTimeIsValid timer.timeSet then
-        button [ class "green-button" ] [ text "Start" ]
+        button [ class "green-button", onClick StartRunning ] [ text "Start" ]
     else
         button [ class "green-button inactive" ] [ text "Start" ]
 
@@ -51,4 +51,5 @@ view timer =
               [ button [ onClick Reset, class "default-button" ] [ text "Reset" ]
               , generateStartStopButton timer
               ]
+        , text (toString timer)
         ]

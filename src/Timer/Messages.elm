@@ -4,6 +4,7 @@ import Time exposing (Time)
 
 type TimerMsg
     = Tick Time
+    | StartRunning
     | ToggleIsRunning
     | Reset
     | TimeUp

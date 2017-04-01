@@ -98,6 +98,9 @@ update timerMsg timer =
         SetSecond userInput ->
             ({ timer | timeSet = (updateSecondSet userInput timer) }, Cmd.none)
 
+        StartRunning ->
+            ({ timer | isSet = True, isRunning = True, timeRemaining = timer.timeSet }, Cmd.none)
+
         ToggleIsRunning ->
             ( toggleIsRunning timer, Cmd.none )
 
@@ -106,10 +109,15 @@ update timerMsg timer =
                 | isRunning = False
                 , isSet = False
                 , alarm = False
+                , timeSet =
+                    { hour = 0
+                    , minute = 0
+                    , second = 0
+                    }
                 , timeRemaining =
-                    { hour = timer.timeSet.hour
-                    , minute = timer.timeSet.minute
-                    , second = timer.timeSet.second
+                    { hour = 0
+                    , minute = 0
+                    , second = 0
                     }
               }
             , Cmd.none
