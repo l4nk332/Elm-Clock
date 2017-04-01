@@ -9,60 +9,61 @@ $didact: 'Didact Gothic', sans-serif
 
 
 @mixin flex($row, $wrap, $justify, $align)
-	display: flex
-	flex-flow: $row $wrap
-	justify-content: $justify
-	align-items: $align
+  display: flex
+  flex-flow: $row $wrap
+  justify-content: $justify
+  align-items: $align
 
 %fade-in-out
-	transition: background-color 150ms ease-in-out
+  transition: background-color 150ms ease-in-out
 
 %round-button
-	width: 80px
-	height: 80px
-	border-radius: 100%
-	border: none
-	cursor: pointer
-	background: none
-	transition: background-color 150ms ease-in-out, color 150ms ease-in-out
+  width: 80px
+  height: 80px
+  border-radius: 100%
+  border: none
+  cursor: pointer
+  background: none
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out
+  outline: none
 
 body
-	min-height: 100vh
-	@include flex(column, nowrap, center, center)
-	background-color: $off-white
+  min-height: 100vh
+  @include flex(column, nowrap, center, center)
+  background-color: $off-white
 
 .widget-container
-	width: 300px
-	height: auto
-	user-select: none
+  width: 300px
+  height: auto
+  user-select: none
 
 .widget
-	width: 100%
-	background-color: $black-chalk
-	@include flex(column, nowrap, flex-start, center)
+  width: 100%
+  background-color: $black-chalk
+  @include flex(column, nowrap, flex-start, center)
 
 .widget-switch-group
-	@include flex(row, nowrap, center, center)
+  @include flex(row, nowrap, center, center)
 
 .widget-switch
-	font-family: $didact
-	background-color: $black-chalk
-	color: $white
-	display: block
-	width: 100px
-	height: auto
-	cursor: pointer
-	user-select: none
+  font-family: $didact
+  background-color: $black-chalk
+  color: $white
+  display: block
+  width: 100px
+  height: auto
+  cursor: pointer
+  user-select: none
 
 .timestamp
-	font-family: $dosis
-	font-weight: 200
-	width: 100%
-	font-size: 50px
-	text-align: center
-	color: $white
-	margin: 0 auto
-	padding: 5px 0 10px 0
+  font-family: $dosis
+  font-weight: 200
+  width: 100%
+  font-size: 50px
+  text-align: center
+  color: $white
+  margin: 0 auto
+  padding: 5px 0 10px 0
 
 .digit-box
   color: $white
@@ -80,104 +81,103 @@ body
     background: lighten($black-chalk, 20%)
 
 .clock-widget .timestamp
-    @include flex(row, nowrap, space-between, center)
-    padding-right: 0.3em
-    padding-left: 0.8em
-    box-sizing: border-box
+  @include flex(row, nowrap, space-between, center)
+  padding-right: 0.3em
+  padding-left: 0.8em
+  box-sizing: border-box
 
 .clock-time
-    display: inline-block
+  display: inline-block
 
 .meridien
-	margin-left: 15px
+  margin-left: 15px
 
 .widget-switch-icon, .widget-switch-text
-	display: block
-	text-align: center
-	padding: 2px
-	margin: auto
+  display: block
+  text-align: center
+  padding: 2px
+  margin: auto
 
 .widget-switch-text
-	padding-bottom: 4px
+  padding-bottom: 4px
 
 .widget-switch.inactive
-	color: transparentize($white, 0.3)
-	.widget-switch-icon
-		color: inherit
-	.widget-switch-text
-		color: inherit
+  color: transparentize($white, 0.3)
+  .widget-switch-icon
+    color: inherit
+  .widget-switch-text
+    color: inherit
 
 .stopwatch-widget .timestamp, .timer-widget .timestamp
-	border-bottom: 1px solid transparentize($off-white, 0.8)
+  border-bottom: 1px solid transparentize($off-white, 0.8)
 
 .flex-button-group
-	@include flex(row, nowrap, space-around, center)
-	width: 80%
-	padding: 10px 0
-
+  @include flex(row, nowrap, space-around, center)
+  width: 80%
+  padding: 10px 0
 
 .default-button
-	@extend %round-button
-	color: $white
-	border: 1px solid $white
-	&:hover
-		color: $black-chalk
-		background-color: $white
-	&:active
-		color: $black-chalk
-		background-color: darken($white, 10%)
+  @extend %round-button
+  color: $white
+  border: 1px solid $white
+  &:hover
+    color: $black-chalk
+    background-color: $white
+  &:active
+    color: $black-chalk
+    background-color: darken($white, 10%)
 
 .green-button
-	@extend %round-button
-	color: $green-tea
-	border: 1px solid $green-tea
-	&:hover
-		color: $black-chalk
-		background-color: $green-tea
+  @extend %round-button
+  color: $green-tea
+  border: 1px solid $green-tea
+  &:hover
+    color: $black-chalk
+    background-color: $green-tea
 
 .red-button
-	@extend %round-button
-	color: $flat-red
-	border: 1px solid $flat-red
-	&:hover
-		color: $black-chalk
-		background-color: $flat-red
+  @extend %round-button
+  color: $flat-red
+  border: 1px solid $flat-red
+  &:hover
+    color: $black-chalk
+    background-color: $flat-red
 
 .lap-list
-	color: $white
-	width: 100%
-	max-height: 88px
-	overflow: auto
-	margin: 0
-	padding-left: 0
-	list-style: none
-	li
-		@include flex(row, nowrap, space-between, center)
-		padding: 5px 40px
-		border-bottom: 1px solid transparentize($off-white, 0.8)
-		&:last-child
-			border-bottom: none
-	.fastest-lap
-		color: $green-tea
-	.slowest-lap
-		color: $flat-red
+  color: $white
+  width: 100%
+  max-height: 88px
+  overflow: auto
+  margin: 0
+  padding-left: 0
+  list-style: none
+  li
+    @include flex(row, nowrap, space-between, center)
+    padding: 5px 40px
+    border-bottom: 1px solid transparentize($off-white, 0.8)
+    &:last-child
+      border-bottom: none
+    .fastest-lap
+      color: $green-tea
+    .slowest-lap
+      color: $flat-red
 
 // States
 
 .inactive
-	background-color: lighten($black-chalk, 10%)
+  background-color: lighten($black-chalk, 10%)
 
 .disabled
-    opacity: 0.5
+  opacity: 0.5
+  background-color: transparent
+  color: $white
+  cursor: default
+  &:hover
     background-color: transparent
     color: $white
-    cursor: default
-    &:hover
-        background-color: transparent
-        color: $white
-    &:active
-        background-color: transparent
-        color: $white
+  &:active
+    background-color: transparent
+    color: $white
 
 .hidden
-	display: none
+  display: none
