@@ -36,16 +36,16 @@ generateStartStopButton timer =
     else
         button [ class "green-button inactive" ] [ text "Start" ]
 
-showAlarm : Bool -> String
-showAlarm isActive =
-    if isActive then
-        "Time Up!"
+generateWidgetClasses : Timer -> String
+generateWidgetClasses timer =
+    if timer.alarm then
+        "widget timer-widget alarm"
     else
-        ""
+        "widget timer-widget"
 
 view : Timer -> Html TimerMsg
 view timer =
-    div [ class "widget timer-widget" ]
+    div [ class (generateWidgetClasses timer) ]
         [ (generateTimestamp timer)
         , div [ class "flex-button-group" ]
               [ button [ onClick Reset, class "default-button" ] [ text "Reset" ]

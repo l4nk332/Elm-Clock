@@ -111,6 +111,9 @@ body
 .stopwatch-widget .timestamp, .timer-widget .timestamp
   border-bottom: 1px solid transparentize($off-white, 0.8)
 
+.timer-widget.alarm
+  animation: pulse 500ms ease-in-out infinite alternate
+
 .flex-button-group
   @include flex(row, nowrap, space-around, center)
   width: 80%
@@ -181,3 +184,9 @@ body
 
 .hidden
   display: none
+
+@keyframes pulse
+  0%
+    background-color: $black-chalk
+  100%
+    background-color: lighten($black-chalk, 10%)
