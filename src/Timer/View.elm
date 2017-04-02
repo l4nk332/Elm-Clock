@@ -46,7 +46,7 @@ generateWidgetClasses timer =
 generateAlarmAudio : Timer -> Html TimerMsg
 generateAlarmAudio timer =
     if timer.alarm then
-        audio [ src "alarm.mp3", autoplay True, loop True ] []
+        audio [ src "alarm.ogg", autoplay True, loop True ] []
     else
         span [] []
 

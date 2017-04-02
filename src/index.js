@@ -4,7 +4,7 @@ require('./index.html');
 require('normalize.css');
 require('./style/main.sass');
 
-require('file-loader?name=alarm.mp3!./sfx/alarm.mp3');
+require('file-loader?name=alarm.ogg!./sfx/alarm.ogg');
 
 var Elm = require('./Main.elm');
 var mountNode = document.getElementById('main');

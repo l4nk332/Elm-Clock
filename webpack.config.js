@@ -15,7 +15,7 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.mp3$/,
+                test: /\.ogg$/,
                 loader: 'file-loader',
                 query: {
                     useRelativePath: true
