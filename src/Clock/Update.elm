@@ -15,16 +15,28 @@ update msg clock =
                     Date.fromTime timeInSeconds
 
                 meridien =
-                    determineMeridien (Date.hour date)
+                    date
+                        |> Date.hour
+                        |> determineMeridien
 
                 hours =
-                    padWithZero (toString (convertTo12HourTime (Date.hour date)))
+                    date
+                        |> Date.hour
+                        |> convertTo12HourTime
+                        |> toString
+                        |> padWithZero
 
                 minutes =
-                    padWithZero (toString (Date.minute date))
+                    date
+                        |> Date.minute
+                        |> toString
+                        |> padWithZero
 
                 seconds =
-                    padWithZero (toString (Date.second date))
+                    date
+                        |> Date.second
+                        |> toString
+                        |> padWithZero
             in
                 { clock
                     | hours = hours

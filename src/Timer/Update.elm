@@ -19,7 +19,9 @@ updateHourSet : String -> Timer -> TrackTime
 updateHourSet userInput timer =
     let
         hourSet =
-            Result.withDefault 0 (String.toInt userInput)
+            userInput
+                |> String.toInt
+                |> Result.withDefault 0
 
         timeSet =
             timer.timeSet
@@ -31,7 +33,9 @@ updateMinuteSet : String -> Timer -> TrackTime
 updateMinuteSet userInput timer =
     let
         minuteSet =
-            Result.withDefault 0 (String.toInt userInput)
+            userInput
+                |> String.toInt
+                |> Result.withDefault 0
 
         timeSet =
             timer.timeSet
@@ -43,7 +47,9 @@ updateSecondSet : String -> Timer -> TrackTime
 updateSecondSet userInput timer =
     let
         secondSet =
-            Result.withDefault 0 (String.toInt userInput)
+            userInput
+                |> String.toInt
+                |> Result.withDefault 0
 
         timeSet =
             timer.timeSet
