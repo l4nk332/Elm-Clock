@@ -4,9 +4,12 @@ import Clock.Messages exposing (ClockMsg(..))
 import Stopwatch.Messages exposing (StopwatchMsg(..))
 import Timer.Messages exposing (TimerMsg(..))
 
-type Widget = ClockWidget
-            | StopwatchWidget
-            | TimerWidget
+
+type Widget
+    = ClockWidget
+    | StopwatchWidget
+    | TimerWidget
+
 
 type Msg
     = RouteClock ClockMsg

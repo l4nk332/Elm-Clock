@@ -10,11 +10,17 @@ leftPadWithZero n =
     else
         toString n
 
+
 formatHMS : TrackTime -> String
 formatHMS timeElapsed =
     let
-        hour = timeElapsed.hour
-        minute = timeElapsed.minute
-        second = timeElapsed.second
+        hour =
+            timeElapsed.hour
+
+        minute =
+            timeElapsed.minute
+
+        second =
+            timeElapsed.second
     in
         (leftPadWithZero hour) ++ ":" ++ (leftPadWithZero minute) ++ ":" ++ (leftPadWithZero second)

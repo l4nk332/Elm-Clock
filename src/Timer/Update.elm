@@ -14,30 +14,41 @@ calculateUnderflow count floor =
     else
         ( count, 0 )
 
+
 updateHourSet : String -> Timer -> TrackTime
 updateHourSet userInput timer =
     let
-        hourSet = Result.withDefault 0 (String.toInt userInput)
-        timeSet = timer.timeSet
+        hourSet =
+            Result.withDefault 0 (String.toInt userInput)
+
+        timeSet =
+            timer.timeSet
     in
         { timeSet | hour = hourSet }
+
 
 updateMinuteSet : String -> Timer -> TrackTime
 updateMinuteSet userInput timer =
     let
-        minuteSet = Result.withDefault 0 (String.toInt userInput)
-        timeSet = timer.timeSet
+        minuteSet =
+            Result.withDefault 0 (String.toInt userInput)
+
+        timeSet =
+            timer.timeSet
     in
         { timeSet | minute = minuteSet }
+
 
 updateSecondSet : String -> Timer -> TrackTime
 updateSecondSet userInput timer =
     let
-        secondSet = Result.withDefault 0 (String.toInt userInput)
-        timeSet = timer.timeSet
+        secondSet =
+            Result.withDefault 0 (String.toInt userInput)
+
+        timeSet =
+            timer.timeSet
     in
         { timeSet | second = secondSet }
-
 
 
 updateTrackTime : TrackTime -> TrackTime
@@ -57,9 +68,11 @@ updateTrackTime trackTime =
         , second = s
         }
 
+
 timerReachedZero : TrackTime -> Bool
 timerReachedZero timer =
     (timer.hour == 0) && (timer.minute == 0) && (timer.second == 0)
+
 
 toggleIsRunning : Timer -> Timer
 toggleIsRunning timer =
@@ -69,6 +82,7 @@ toggleIsRunning timer =
         { timer | timeRemaining = timer.timeSet, isSet = True, isRunning = True, alarm = False }
     else
         timer
+
 
 update : TimerMsg -> Timer -> ( Timer, Cmd TimerMsg )
 update timerMsg timer =
@@ -87,19 +101,19 @@ update timerMsg timer =
                 if timerReachedZero updatedTimeRemaining then
                     update TimeUp updatedTimer
                 else
-                    (updatedTimer, Cmd.none)
+                    ( updatedTimer, Cmd.none )
 
         SetHour userInput ->
-            ({ timer | timeSet = (updateHourSet userInput timer) }, Cmd.none)
+            ( { timer | timeSet = (updateHourSet userInput timer) }, Cmd.none )
 
         SetMinute userInput ->
-            ({ timer | timeSet = (updateMinuteSet userInput timer) }, Cmd.none)
+            ( { timer | timeSet = (updateMinuteSet userInput timer) }, Cmd.none )
 
         SetSecond userInput ->
-            ({ timer | timeSet = (updateSecondSet userInput timer) }, Cmd.none)
+            ( { timer | timeSet = (updateSecondSet userInput timer) }, Cmd.none )
 
         StartRunning ->
-            ({ timer | isSet = True, isRunning = True, timeRemaining = timer.timeSet }, Cmd.none)
+            ( { timer | isSet = True, isRunning = True, timeRemaining = timer.timeSet }, Cmd.none )
 
         ToggleIsRunning ->
             ( toggleIsRunning timer, Cmd.none )

@@ -6,14 +6,12 @@ import Stopwatch.Model exposing (Stopwatch, initialStopwatch)
 import Timer.Model exposing (Timer, initialTimer)
 
 
-
 type alias Model =
     { clockWidget : Clock
     , stopwatchWidget : Stopwatch
     , timerWidget : Timer
     , activeWidget : Widget
     }
-
 
 
 model : Model

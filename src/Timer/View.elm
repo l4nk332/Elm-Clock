@@ -8,15 +8,17 @@ import Timer.Messages exposing (TimerMsg(..))
 import Timer.Utils.Format exposing (formatHMS)
 import Timer.Utils.Validation exposing (trackTimeIsValid)
 
+
 generateDigitInputBoxes : Timer -> Html TimerMsg
 generateDigitInputBoxes timer =
-    h3 [ class "timestamp" ] [
-        input [ (onInput SetHour), class "digit-box", type_ "text", maxlength 2 ] []
+    h3 [ class "timestamp" ]
+        [ input [ (onInput SetHour), class "digit-box", type_ "text", maxlength 2 ] []
         , text ":"
         , input [ (onInput SetMinute), class "digit-box", type_ "text", maxlength 2 ] []
         , text ":"
         , input [ (onInput SetSecond), class "digit-box", type_ "text", maxlength 2 ] []
-    ]
+        ]
+
 
 generateTimestamp : Timer -> Html TimerMsg
 generateTimestamp timer =
@@ -24,6 +26,7 @@ generateTimestamp timer =
         h3 [ class "timestamp" ] [ text (formatHMS timer.timeRemaining) ]
     else
         (generateDigitInputBoxes timer)
+
 
 generateStartStopButton : Timer -> Html TimerMsg
 generateStartStopButton timer =
@@ -37,12 +40,14 @@ generateStartStopButton timer =
     else
         button [ class "green-button disabled" ] [ text "Start" ]
 
+
 generateResetButton : Timer -> Html TimerMsg
 generateResetButton timer =
     if timer.isSet || timer.alarm then
         button [ onClick Reset, class "default-button" ] [ text "Reset" ]
     else
         button [ class "default-button disabled" ] [ text "Reset" ]
+
 
 generateWidgetClasses : Timer -> String
 generateWidgetClasses timer =
@@ -51,6 +56,7 @@ generateWidgetClasses timer =
     else
         "widget timer-widget"
 
+
 generateAlarmAudio : Timer -> Html TimerMsg
 generateAlarmAudio timer =
     if timer.alarm then
@@ -58,13 +64,14 @@ generateAlarmAudio timer =
     else
         span [] []
 
+
 view : Timer -> Html TimerMsg
 view timer =
     div [ class (generateWidgetClasses timer) ]
         [ (generateTimestamp timer)
         , div [ class "flex-button-group" ]
-              [ generateResetButton timer
-              , generateStartStopButton timer
-              ]
+            [ generateResetButton timer
+            , generateStartStopButton timer
+            ]
         , (generateAlarmAudio timer)
         ]

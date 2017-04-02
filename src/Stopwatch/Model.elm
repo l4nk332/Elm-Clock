@@ -7,12 +7,14 @@ type alias TrackTime =
     , second : Int
     }
 
+
 type alias Stopwatch =
     { isRunning : Bool
     , timeElapsed : TrackTime
     , currentLap : TrackTime
     , laps : List TrackTime
     }
+
 
 initialStopwatch : Stopwatch
 initialStopwatch =

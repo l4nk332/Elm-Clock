@@ -9,6 +9,7 @@ import Clock.View
 import Stopwatch.View
 import Timer.View
 
+
 displayActiveWidget : Model -> Html Msg
 displayActiveWidget model =
     case model.activeWidget of
@@ -21,12 +22,13 @@ displayActiveWidget model =
         TimerWidget ->
             Html.map RouteTimer (Timer.View.view model.timerWidget)
 
+
 generateWidgetSwitches : Model -> List (Html Msg)
 generateWidgetSwitches model =
     case model.activeWidget of
         ClockWidget ->
             [ div [ onClick (Activate ClockWidget), class "widget-switch" ]
-                [ i [ class "material-icons widget-switch-icon" ] [ text "access_time"]
+                [ i [ class "material-icons widget-switch-icon" ] [ text "access_time" ]
                 , span [ class "widget-switch-text" ] [ text "Clock" ]
                 ]
             , div [ onClick (Activate TimerWidget), class "widget-switch inactive" ]
@@ -69,9 +71,10 @@ generateWidgetSwitches model =
                 ]
             ]
 
+
 view : Model -> Html Msg
 view model =
-    div [ class "widget-container" ] [
-        (displayActiveWidget model)
+    div [ class "widget-container" ]
+        [ (displayActiveWidget model)
         , div [ class "widget-switch-group" ] (generateWidgetSwitches model)
-    ]
+        ]

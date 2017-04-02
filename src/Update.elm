@@ -17,13 +17,15 @@ update msg model =
 
         RouteStopwatch stopwatchMsg ->
             let
-                (stopwatchModel, childMsg) = Stopwatch.Update.update stopwatchMsg model.stopwatchWidget
+                ( stopwatchModel, childMsg ) =
+                    Stopwatch.Update.update stopwatchMsg model.stopwatchWidget
             in
                 ( { model | stopwatchWidget = stopwatchModel }, Cmd.map RouteStopwatch childMsg )
 
         RouteTimer timerMsg ->
             let
-                (timerModel, childMsg) = Timer.Update.update timerMsg model.timerWidget
+                ( timerModel, childMsg ) =
+                    Timer.Update.update timerMsg model.timerWidget
             in
                 ( { model | timerWidget = timerModel }, Cmd.map RouteTimer childMsg )
 

@@ -45,9 +45,8 @@ update stopwatchMsg stopwatch =
                 currentLap =
                     stopwatch.currentLap
 
-                updatedLapTime=
+                updatedLapTime =
                     updateTrackTime currentLap
-
             in
                 ( { stopwatch
                     | timeElapsed = updatedTimeElapsed

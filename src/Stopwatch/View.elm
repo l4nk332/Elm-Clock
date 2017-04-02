@@ -15,7 +15,7 @@ generateStopwatchButtons stopwatch =
         [ button [ class "default-button", onClick Lap ] [ text "Lap" ]
         , button [ class "red-button", onClick ToggleIsRunning ] [ text "Stop" ]
         ]
-    else if stopwatchHasNotStarted(stopwatch) then
+    else if stopwatchHasNotStarted (stopwatch) then
         [ button [ class "default-button disabled" ] [ text "Reset" ]
         , button [ class "green-button", onClick ToggleIsRunning ] [ text "Start" ]
         ]
@@ -24,16 +24,18 @@ generateStopwatchButtons stopwatch =
         , button [ class "green-button", onClick ToggleIsRunning ] [ text "Start" ]
         ]
 
+
 generateLapListItem : Int -> TrackTime -> Html StopwatchMsg
 generateLapListItem index lap =
     li []
-       [ span [] [ text ("Lap " ++ toString(index + 1)) ]
-       , span [] [ text (formatHMS lap) ]
-       ]
+        [ span [] [ text ("Lap " ++ toString (index + 1)) ]
+        , span [] [ text (formatHMS lap) ]
+        ]
+
 
 generateLapsList : List TrackTime -> Html StopwatchMsg
 generateLapsList laps =
-    ul [ class "lap-list" ] (List.reverse (List.indexedMap generateLapListItem (List.reverse(laps))))
+    ul [ class "lap-list" ] (List.reverse (List.indexedMap generateLapListItem (List.reverse (laps))))
 
 
 view : Stopwatch -> Html StopwatchMsg

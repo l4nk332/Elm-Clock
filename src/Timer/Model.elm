@@ -7,6 +7,7 @@ type alias TrackTime =
     , second : Int
     }
 
+
 type alias Timer =
     { isRunning : Bool
     , alarm : Bool
@@ -14,6 +15,7 @@ type alias Timer =
     , timeSet : TrackTime
     , timeRemaining : TrackTime
     }
+
 
 initialTimer : Timer
 initialTimer =
