@@ -4,7 +4,7 @@ import Task
 import Time
 import Timer.Model exposing (Timer, TrackTime)
 import Timer.Messages exposing (TimerMsg(..))
-import Timer.Utils.Format exposing (..)
+import Timer.Utils.Validation exposing (trackTimeIsValid)
 
 
 calculateUnderflow : Int -> Int -> ( Int, Int )

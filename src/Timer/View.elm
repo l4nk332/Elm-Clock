@@ -1,11 +1,12 @@
 module Timer.View exposing (..)
 
-import Html exposing (..)
+import Html exposing (Html, h3, div, input, text, button, audio, span)
 import Html.Events exposing (onClick, onInput)
-import Html.Attributes exposing (..)
+import Html.Attributes exposing (class, type_, maxlength, src, autoplay, loop)
 import Timer.Model exposing (Timer, TrackTime)
 import Timer.Messages exposing (TimerMsg(..))
-import Timer.Utils.Format exposing (..)
+import Timer.Utils.Format exposing (formatHMS)
+import Timer.Utils.Validation exposing (trackTimeIsValid)
 
 generateDigitInputBoxes : Timer -> Html TimerMsg
 generateDigitInputBoxes timer =
