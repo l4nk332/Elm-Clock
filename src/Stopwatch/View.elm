@@ -5,8 +5,8 @@ import Html.Events exposing (onClick)
 import Html.Attributes exposing (class)
 import Stopwatch.Model exposing (Stopwatch, TrackTime)
 import Stopwatch.Messages exposing (StopwatchMsg(..))
-import Stopwatch.Utils.Format exposing (..)
-import Stopwatch.Utils.Validation exposing (..)
+import Stopwatch.Utils.Format exposing (formatHMS)
+import Stopwatch.Utils.Validation exposing (stopwatchHasNotStarted)
 
 
 generateStopwatchButtons : Stopwatch -> List (Html StopwatchMsg)
