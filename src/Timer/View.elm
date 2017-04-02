@@ -43,6 +43,13 @@ generateWidgetClasses timer =
     else
         "widget timer-widget"
 
+generateAlarmAudio : Timer -> Html TimerMsg
+generateAlarmAudio timer =
+    if timer.alarm then
+        audio [ src "alarm.mp3", autoplay True, loop True ] []
+    else
+        span [] []
+
 view : Timer -> Html TimerMsg
 view timer =
     div [ class (generateWidgetClasses timer) ]
@@ -51,4 +58,5 @@ view timer =
               [ button [ onClick Reset, class "default-button" ] [ text "Reset" ]
               , generateStartStopButton timer
               ]
+        , (generateAlarmAudio timer)
         ]

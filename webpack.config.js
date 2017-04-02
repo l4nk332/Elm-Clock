@@ -15,6 +15,13 @@ module.exports = {
     module: {
         loaders: [
             {
+                test: /\.mp3$/,
+                loader: 'file-loader',
+                query: {
+                    useRelativePath: true
+                }
+            },
+            {
                 test: /\.(css|sass|scss)$/,
                 loaders: [
                     'style-loader',
