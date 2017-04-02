@@ -26,15 +26,15 @@ generateTimestamp timer =
 
 generateStartStopButton : Timer -> Html TimerMsg
 generateStartStopButton timer =
-    if timer.isSet then
+    if timer.isSet && not timer.alarm then
         if timer.isRunning then
             button [ onClick ToggleIsRunning, class "red-button" ] [ text "Stop" ]
         else
             button [ onClick ToggleIsRunning, class "green-button" ] [ text "Start" ]
-    else if trackTimeIsValid timer.timeSet then
+    else if (trackTimeIsValid timer.timeSet) && not timer.alarm then
         button [ class "green-button", onClick StartRunning ] [ text "Start" ]
     else
-        button [ class "green-button inactive" ] [ text "Start" ]
+        button [ class "green-button disabled" ] [ text "Start" ]
 
 generateWidgetClasses : Timer -> String
 generateWidgetClasses timer =
