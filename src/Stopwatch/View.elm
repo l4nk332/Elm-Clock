@@ -35,7 +35,12 @@ generateLapListItem index lap =
 
 generateLapsList : List TrackTime -> Html StopwatchMsg
 generateLapsList laps =
-    ul [ class "lap-list" ] (List.reverse (List.indexedMap generateLapListItem (List.reverse (laps))))
+    ul [ class "lap-list" ]
+        (laps
+            |> List.reverse
+            |> List.indexedMap generateLapListItem
+            |> List.reverse
+        )
 
 
 view : Stopwatch -> Html StopwatchMsg
