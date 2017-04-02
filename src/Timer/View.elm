@@ -36,6 +36,13 @@ generateStartStopButton timer =
     else
         button [ class "green-button disabled" ] [ text "Start" ]
 
+generateResetButton : Timer -> Html TimerMsg
+generateResetButton timer =
+    if timer.isSet || timer.alarm then
+        button [ onClick Reset, class "default-button" ] [ text "Reset" ]
+    else
+        button [ class "default-button disabled" ] [ text "Reset" ]
+
 generateWidgetClasses : Timer -> String
 generateWidgetClasses timer =
     if timer.alarm then
@@ -55,7 +62,7 @@ view timer =
     div [ class (generateWidgetClasses timer) ]
         [ (generateTimestamp timer)
         , div [ class "flex-button-group" ]
-              [ button [ onClick Reset, class "default-button" ] [ text "Reset" ]
+              [ generateResetButton timer
               , generateStartStopButton timer
               ]
         , (generateAlarmAudio timer)
